@@ -1,3 +1,11 @@
 FROM nocodb/nocodb:latest
 
-ENTRYPOINT ["sh", "/usr/src/appEntry/start.sh"]
+# A new entrypoint script that wraps the existing NocoDB entrypoint script, but also runs our sync
+COPY entrypoint.sh /usr/src/appEntry/entrypoint.sh
+
+# Add SQLite syncing script
+COPY sync-db-to-git.sh /usr/src/appEntry/sync-db-to-git.sh
+RUN chmod +x /usr/src/appEntry/*.sh
+
+# Start NocoDB and our sync background worker
+ENTRYPOINT ["sh", "/usr/src/appEntry/entrypoint.sh"]
