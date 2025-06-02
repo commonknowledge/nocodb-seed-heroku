@@ -14,6 +14,7 @@ while true; do
     echo "[sync] Database changed. Syncing to Git..."
   else
     echo "[sync] No database changes detected."
+    continue
   fi
 
   cp "$DB_SRC" "$DB_DEST"
@@ -35,7 +36,5 @@ while true; do
         delay=$(($delay * 2))
       fi
     done
-  else
-    echo "[sync] Nothing to commit."
   fi
 done
