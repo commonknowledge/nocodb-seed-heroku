@@ -10,7 +10,7 @@ if [ -n "$GITHUB_DEPLOY_KEY_PRIVATE" ]; then
 fi
 
 # Clone the repo if it doesn't exist
-if [ ! -d "/usr/app/data/.git" ]; then
+if [ ! -d "/usr/app/data/repo/.git" ]; then
   echo "[entrypoint] Cloning Git repo..."
   git clone git@github.com:commonknowledge/community-climate-justice-archive.git /usr/app/data/repo
 fi
