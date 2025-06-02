@@ -1,7 +1,9 @@
 FROM nocodb/nocodb:latest
 
-# Add Git to the container
-RUN apt-get update && apt-get install -y git
+# Add Git to the container and cleanup Apt temporary files
+RUN apt-get update && \
+    apt-get install -y git && \
+    rm -rf /var/lib/apt/lists/*
 
 # A new entrypoint script that wraps the existing NocoDB entrypoint script, but also runs our sync
 COPY entrypoint.sh /usr/src/appEntry/entrypoint.sh
