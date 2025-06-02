@@ -8,3 +8,8 @@ services:
   envVars:
   - key: PORT
     value: 8080
+  # Storage for SQLite database
+  disk:
+    name: nocodb-sqlite
+    mountPath: /usr/app/data
+    sizeGB: 40
