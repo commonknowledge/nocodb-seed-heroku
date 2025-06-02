@@ -11,8 +11,13 @@ MAX_RETRIES=5
 while true; do
   sleep 10  # every 10 seconds
 
+  echo "[sync] Beginning sync operation"
+
   if ! cmp -s "$DB_SRC" "$DB_DEST"; then
-    echo "Database changed. Syncing to Git..."
+    echo "[sync] Database changed. Syncing to Git..."
+  else
+    echo "[sync] No database changes detected."
+  fi
 
 # Comment everything out, let's just get this going for now
 #     cp "$DB_SRC" "$DB_DEST"
