@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-REPO_DIR="/usr/src/appEntry/repo"
+REPO_DIR="/usr/app/data/repo"
 DB_SRC="/usr/app/data/noco.db"
 DB_DEST="$REPO_DIR/nocodb.sqlite"
 

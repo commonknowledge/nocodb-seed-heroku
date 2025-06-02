@@ -10,9 +10,9 @@ if [ -n "$GITHUB_DEPLOY_KEY_PRIVATE" ]; then
 fi
 
 # Clone the repo if it doesn't exist
-if [ ! -d "/usr/src/appEntry/repo/.git" ]; then
+if [ ! -d "/usr/app/data/.git" ]; then
   echo "[entrypoint] Cloning Git repo..."
-  git clone git@github.com:commonknowledge/community-climate-justice-archive.git /usr/src/appEntry/repo
+  git clone git@github.com:commonknowledge/community-climate-justice-archive.git /usr/app/data/repo
 fi
 
 # Start sync in background
