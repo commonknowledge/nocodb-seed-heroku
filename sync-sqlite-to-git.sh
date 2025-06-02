@@ -24,13 +24,15 @@ while true; do
   git add nocodb.sqlite
 
   if git commit -m "Automated SQLite database sync: $(date +%Y-%m-%dT%H:%M:%S)"; then
+    delay=1
     for i in 1 2 3 4 5; do
       if git push origin main; then
         echo "[sync] Git push successful."
         break
       else
         echo "[sync] Push failed. Retry $i/5..."
-        sleep $((2 ** i))
+        sleep "$delay"
+        delay=$(($delay * 2))
       fi
     done
   else
