@@ -2,7 +2,7 @@ services:
 - type: web
   name: nocodb
   env: docker
-  autoDeployTrigger: off
+  autoDeployTrigger: commit
   healthCheckPath: /dashboard
   region: frankfurt
   envVars:
