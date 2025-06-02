@@ -2,7 +2,7 @@
 set -e
 
 REPO_DIR="/usr/src/appEntry/repo"
-DB_SRC="/usr/app/data/nocodb.sqlite"
+DB_SRC="/usr/app/data/noco.db"
 DB_DEST="$REPO_DIR/nocodb.sqlite"
 
 while true; do
