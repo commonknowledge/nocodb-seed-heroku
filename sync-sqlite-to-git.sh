@@ -41,7 +41,7 @@ while true; do
     git config user.email "hello@commonknowledge.coop"
     git add nocodb.sqlite
     if git commit -m "Automated SQLite database sync: $(date +%Y-%m-%dT%H:%M:%S)"; then
-      attempt_push "main" # Assuming 'main' is the branch
+      attempt_push "main"
     else
       echo "[sync-db] No changes to commit for database or commit failed."
     fi
@@ -53,13 +53,14 @@ while true; do
   
   mkdir -p "$NC_DEST_DIR"
 
-  rsync -aq --checksum --delete "$NC_SRC_DIR/" "$NC_DEST_DIR/" # -a for archive, q for quiet, checksum to detect changes better than just mod-time/size
+  # -a for archive, -v for verbose, --progress for transfer progress, --delete to remove extraneous files from destination
+  rsync -av --progress --delete "$NC_SRC_DIR/" "$NC_DEST_DIR/"
 
   cd "$REPO_DIR"
 
   if [ -n "$(git status --porcelain "$NC_DEST_DIR")" ]; then
     echo "[sync-images] 'nc' directory changed. Syncing to Git..."
-    git config user.name "Images Sync Bot" # Potentially different committer
+    git config user.name "Images Sync Bot"
     git config user.email "hello@commonknowledge.coop"
     git add "$NC_DEST_DIR"
     if git commit -m "Automated directory sync: $(date +%Y-%m-%dT%H:%M:%S)"; then
