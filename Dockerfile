@@ -1,15 +1,7 @@
 FROM nocodb/nocodb:latest
 
-# Add Git to the container and cleanup Apt temporary files
-RUN apt-get update && \
-    apt-get install -y git && \
-    rm -rf /var/lib/apt/lists/*
-
-
-# Add rsync to the container and cleanup Apt temporary files
-RUN apt-get update && \
-    apt-get install -y rsync && \
-    rm -rf /var/lib/apt/lists/*
+# Add Git and rsync to the container (the NocoDB image is Alpine-based)
+RUN apk add --no-cache git rsync
 
 # A new entrypoint script that wraps the existing NocoDB entrypoint script, but also runs our sync
 COPY entrypoint.sh /usr/src/appEntry/entrypoint.sh
